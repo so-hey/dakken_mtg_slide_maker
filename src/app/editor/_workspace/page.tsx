@@ -1,6 +1,9 @@
 "use client";
+import ContentInput from "@/components/contentInput";
+import DateInput from "@/components/dateInput";
+import { NoticeDisplay, NoticeInput } from "@/components/otherNotice";
 import { convertHtml } from "@/utils/convert";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, MouseEventHandler, useEffect, useState } from "react";
 
 export function WorkSpace({
   confirmButton,
@@ -66,21 +69,41 @@ export function WorkSpace({
   const [noticeTitle, setNoticeTitle] = useState("");
   const handleNoticeTitle = (event: ChangeEvent<HTMLInputElement>) => {
     const newNoticeTitle = event.target.value;
-    setNoticeTitle(newNoticeTitle);
+    if (newNoticeTitle.length <= 30) {
+      setNoticeTitle(newNoticeTitle);
+    }
   };
 
   const [noticeContent, setNoticeContent] = useState("");
   const handleNoticeContent = (event: ChangeEvent<HTMLInputElement>) => {
     const newNoticeContent = event.target.value;
-    setNoticeContent(newNoticeContent);
+    if (newNoticeContent.length <= 30) {
+      setNoticeContent(newNoticeContent);
+    }
   };
 
   const [otherNotice, setOtherNotice] = useState<string[][]>([]);
-  const handleOtherNotice = () => {
-    setOtherNotice([...otherNotice, [noticeTitle, noticeContent]]);
+  const handleNoticeAdd = () => {
+    if (noticeTitle != "" && noticeContent != "") {
+      setOtherNotice([...otherNotice, [noticeTitle, noticeContent]]);
+      setNoticeTitle("");
+      setNoticeContent("");
+      console.log(otherNotice);
+    }
   };
 
+  const handleNoticeDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const id = Number(event.currentTarget.id.slice(12));
+    console.log(id);
+  };
+
+  const [windowHeight, setWindowHeight] = useState(0);
   useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+    handleResize();
+
     setDisplayText(
       convertHtml(
         date,
@@ -88,138 +111,69 @@ export function WorkSpace({
         deContent,
         bizContent,
         ccContent,
-        otherNotice
+        otherNotice.concat([[noticeTitle, noticeContent]])
       )
     );
   });
 
-  const windowHeight = window.innerHeight;
   return (
     <div style={{ overflow: "hidden" }}>
       <div
         className="container"
         style={{ height: `${windowHeight * 0.85}px`, overflowY: "auto" }}
       >
-        <div className="container">
-          <div className="row mt-4">
-            <div className="col-10">
-              <div className="form-group row">
-                <label
-                  className="col-form-label col-3"
-                  style={{ fontSize: 18, fontWeight: "200" }}
-                >
-                  日付：
-                </label>
-                <div className="col-8">
-                  <input
-                    type="date"
-                    className="form-control"
-                    id="dateInput"
-                    onChange={handleDate}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <DateInput handleDate={handleDate} />
         <hr />
         <h3>部門報告</h3>
-        <div className="input-group mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-default">
-            DS
-          </span>
-          <input
-            type="text"
-            className="form-control"
-            value={dsContent}
-            placeholder="なし"
-            onChange={handleDsContent}
-            aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default"
-          />
-        </div>
-        <div className="input-group mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-default">
-            DE
-          </span>
-          <input
-            type="text"
-            className="form-control"
-            value={deContent}
-            placeholder="なし"
-            onChange={handleDeContent}
-            aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default"
-          />
-        </div>
-        <div className="input-group mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-default">
-            BIZ
-          </span>
-          <input
-            type="text"
-            className="form-control"
-            value={bizContent}
-            placeholder="なし"
-            onChange={handleBizContent}
-            aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default"
-          />
-        </div>
-        <div className="input-group mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-default">
-            CC
-          </span>
-          <input
-            type="text"
-            className="form-control"
-            value={ccContent}
-            placeholder="なし"
-            onChange={handleCcContent}
-            aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default"
-          />
-        </div>
+        <ContentInput
+          group="DS"
+          content={dsContent}
+          handleContent={handleDsContent}
+        />
+        <ContentInput
+          group="DE"
+          content={deContent}
+          handleContent={handleDeContent}
+        />
+        <ContentInput
+          group="BIZ"
+          content={bizContent}
+          handleContent={handleBizContent}
+        />
+        <ContentInput
+          group="CC"
+          content={ccContent}
+          handleContent={handleCcContent}
+        />
         <hr />
-        <div style={{ display: "flex", marginBottom: ".5rem" }}>
-          <h3>その他連絡事項</h3>
-          <div style={{ margin: "0 0 0 auto" }}>
-            <button
-              type="button"
-              className="btn btn-outline-primary"
-              onClick={confirmButton}
-            >
-              追加
-            </button>
-          </div>
-        </div>
+        <h3>その他連絡事項</h3>
         <div>
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              id="Title"
-              onChange={handleOtherNotice}
-              placeholder="Title"
-            />
-          </div>
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              id="Content"
-              onChange={handleOtherNotice}
-              placeholder="Content"
-            />
-          </div>
+          {otherNotice.map((notice, index) => {
+            return (
+              <div key={index}>
+                <NoticeDisplay
+                  notice={notice}
+                  handleNoticeDelete={handleNoticeDelete}
+                  index={index}
+                />
+              </div>
+            );
+          })}
         </div>
+        <NoticeInput
+          noticeTitle={noticeTitle}
+          handleNoticeTitle={handleNoticeTitle}
+          noticeContent={noticeContent}
+          handleNoticeContent={handleNoticeContent}
+          handleNoticeAdd={handleNoticeAdd}
+        />
       </div>
       <hr />
       <div style={{ height: `${windowHeight * 0.1}px`, overflow: "hidden" }}>
         <center>
           <button
             type="button"
-            className="btn btn-outline-primary"
+            className="btn btn-lg btn-outline-primary"
             onClick={confirmButton}
           >
             確定

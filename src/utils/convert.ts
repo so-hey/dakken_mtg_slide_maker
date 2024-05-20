@@ -77,10 +77,8 @@ export function convertHtml(
       if (title != "・" || content != "・") {
         if (title.length <= 25) {
           replaceText += `<h3>${title}</h3>`;
-        } else if (title.length <= 30) {
-          replaceText += `<h4>${title}</h4>`;
         } else {
-          replaceText += `<h5>${title}</h5>`;
+          replaceText += `<h4>${title}</h4>`;
         }
         replaceText += `<ul><li>${content}</li></ul>`;
       }

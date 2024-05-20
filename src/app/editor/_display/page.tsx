@@ -1,22 +1,13 @@
 "use client";
 
+import useWindowSize from "@/hooks/windowSize";
 import { useEffect, useState } from "react";
 
 export function Display({ displayText }: { displayText: string }) {
+  const { windowWidth } = useWindowSize();
   const [isInitiated, setIsInitiated] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(0);
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    handleResize();
     setIsInitiated(true);
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
   if (isInitiated) {
@@ -25,7 +16,7 @@ export function Display({ displayText }: { displayText: string }) {
         <style>
           {`
       .displayText .title {
-        font-size: ${windowWidth * 0.04}px;
+        font-size: ${windowWidth * 0.038}px;
         font-weight: bold;
         text-align: center;
         padding-top: ${windowWidth * 0.07}px;
