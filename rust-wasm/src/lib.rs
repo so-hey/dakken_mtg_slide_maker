@@ -1,27 +1,15 @@
+use pulldown_cmark::{html, Options, Parser};
 use wasm_bindgen::prelude::*;
 
-#[cfg(feature = "wee_alloc")]
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
-
 #[wasm_bindgen]
-extern "C" {
-    #[wasm_bindgen(js_namespace = console)]
-    fn log(a: &str);
-}
+pub fn pulldown_cmark(source_text: &str) -> String {
+    let markdown_input = source_text;
 
-macro_rules! console_log {
-    ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
-}
+    let mut options = Options::empty();
+    options.insert(Options::ENABLE_STRIKETHROUGH);
+    let parser = Parser::new_ext(markdown_input, options);
 
-#[wasm_bindgen]
-pub fn greet(name: &str) -> String {
-    console_log!("Hello, {}", name);
-    format!("Hello, {}!", name)
-}
-
-#[wasm_bindgen]
-pub fn add(a: isize, b: isize) -> isize {
-    console_log!("called add function");
-    a + b
+    let mut html_output = String::new();
+    html::push_html(&mut html_output, parser);
+    html_output
 }

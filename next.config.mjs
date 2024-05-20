@@ -9,11 +9,14 @@ const nextConfig = {
     config.plugins.push(
       new WasmPackPlugin({
         crateDirectory: path.resolve(__dirname, "./rust-wasm"),
-        extraArgs: "--target web",
         outDir: path.resolve(__dirname, "./public/pkg"),
         outName: "rust_wasm",
       })
     );
+    config.experiments = {
+      syncWebAssembly: true,
+      layers: true,
+    };
     return config;
   },
 };
