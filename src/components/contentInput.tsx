@@ -11,7 +11,11 @@ export default function ContentInput({
 }) {
   return (
     <div className="input-group mb-3">
-      <span className="input-group-text" id="inputGroup-sizing-default">
+      <span
+        className="input-group-text"
+        id="inputGroup-sizing-default"
+        style={{ width: "4vw" }}
+      >
         {group}
       </span>
       <input

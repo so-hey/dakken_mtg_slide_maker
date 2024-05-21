@@ -1,5 +1,13 @@
-import Link from "next/link";
+"use client";
+
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  return <Link href="/editor">Editor</Link>;
+  const router = useRouter();
+  return (
+    <div>
+      <button onClick={() => router.push("/workspace")}>workspace</button>
+    </div>
+  );
 }

@@ -1,3 +1,5 @@
+import { countCharacters } from "./countCharacters";
+
 const dateToText = (date: Date) => {
   return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日(${dayToJapanese(date.getDay())})`;
 };
@@ -72,20 +74,22 @@ export function convertHtml(
     .replace("{ccContent}", ccContent === "" ? "なし" : ccContent);
 
   let replaceText = "";
-  if (otherNotice) {
-    for (let [title, content] of otherNotice) {
-      if (title != "・" || content != "・") {
-        if (title.length <= 25) {
-          replaceText += `<h3>${title}</h3>`;
-        } else {
-          replaceText += `<h4>${title}</h4>`;
-        }
-        replaceText += `<ul><li>${content}</li></ul>`;
-      }
+  otherNotice.map((notice, index) => {
+    if (index % 4 == 0 && index != 0) {
+      replaceText += '</div><hr><div class="box"><br />';
     }
-  }
+    const [title, content] = notice;
+    if (title != "" || content != "") {
+      if (countCharacters(title) <= 120) {
+        replaceText += `<h3>${title}</h3>`;
+      } else {
+        replaceText += `<h4>${title}</h4>`;
+      }
+      replaceText += `<ul><li>${content}</li></ul>`;
+    }
+  });
   if (replaceText == "") {
-    replaceText = "<h3>今日はなし</h3>";
+    replaceText = "<h3>なし</h3>";
   }
   htmlText = htmlText.replace("{otherNotice}", replaceText);
 
@@ -118,7 +122,7 @@ export async function convertMd(
     }
   }
   if (replaceText == "") {
-    replaceText = "今日はなし";
+    replaceText = "なし";
   }
   mdText = mdText.replace("{otherNotice}", replaceText);
 

@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEventHandler } from "react";
+import { ChangeEvent } from "react";
 
 export function NoticeInput({
   noticeTitle,
@@ -25,13 +25,6 @@ export function NoticeInput({
             onChange={handleNoticeTitle}
             placeholder="Title"
           />
-          <button
-            type="button"
-            className="btn btn-outline-primary"
-            onClick={handleNoticeAdd}
-          >
-            追加
-          </button>
         </div>
         <div className="input-group mb-3">
           <input
@@ -42,6 +35,13 @@ export function NoticeInput({
             onChange={handleNoticeContent}
             placeholder="Content"
           />
+          <button
+            type="button"
+            className="btn btn-outline-primary"
+            onClick={handleNoticeAdd}
+          >
+            追加
+          </button>
         </div>
       </div>
     </div>
@@ -68,14 +68,6 @@ export function NoticeDisplay({
           placeholder="Title"
           disabled
         />
-        <button
-          type="button"
-          className="btn btn-outline-danger"
-          id={`deleteButton${index}`}
-          onClick={handleNoticeDelete}
-        >
-          削除
-        </button>
       </div>
       <div className="input-group mb-3">
         <input
@@ -86,6 +78,14 @@ export function NoticeDisplay({
           placeholder="Content"
           disabled
         />
+        <button
+          type="button"
+          className="btn btn-outline-danger"
+          id={`deleteButton${index}`}
+          onClick={handleNoticeDelete}
+        >
+          削除
+        </button>
       </div>
     </div>
   );

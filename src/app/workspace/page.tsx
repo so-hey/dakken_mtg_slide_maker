@@ -1,20 +1,26 @@
 "use client";
-import { useState } from "react";
-import { WorkSpace } from "./_workspace/page";
+import { Editor } from "./_editor/page";
 import { Display } from "./_display/page";
-import { convertHtml, convertMd } from "@/utils/convert";
+import { Download } from "./_download/page";
+import { PropsProvider, useProps } from "@/contexts/PropsContext";
 
-export default function Editor() {
-  const [displayText, setDisplayText] = useState(
-    convertHtml(new Date(), "", "", "", "", [])
-  );
-
-  const confirmButton = () => {};
-
+export default function WorkSpace() {
   return (
-    <div className="container-fluid">
+    <PropsProvider>
+      <InternalCompornent />
+    </PropsProvider>
+  );
+}
+
+const InternalCompornent = () => {
+  const { isWorking } = useProps();
+  return (
+    <div className="container-fluid" style={{ backgroundColor: "#EEE" }}>
       <div className="row mt-0 justify-content-center mh-100">
-        <div className="col-10 col-lg-11 mh-100">
+        <div
+          className="col-10 col-lg-11 mh-100"
+          style={{ backgroundColor: "white" }}
+        >
           <div
             className="row mh-100"
             style={{
@@ -27,17 +33,14 @@ export default function Editor() {
               className="col-sm-6 border-end mh-100"
               style={{ overflow: "hidden" }}
             >
-              <WorkSpace
-                confirmButton={confirmButton}
-                setDisplayText={setDisplayText}
-              />
+              {isWorking ? <Editor /> : <Download />}
             </div>
             <div className="col-sm-6 mh-100" style={{ overflowY: "auto" }}>
-              <Display displayText={displayText} />
+              <Display />
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
