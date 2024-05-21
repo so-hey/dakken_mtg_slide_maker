@@ -7,7 +7,7 @@ export function Display() {
 
   return (
     <div>
-      <style jsx>{`
+      <style>{`
         .displayText .title {
           font-size: 3.8vw;
           font-weight: bold;
@@ -34,7 +34,7 @@ export function Display() {
           margin: 0.7vw 1.2vw;
         }
         .displayText h5 {
-          font-size: 1vw
+          font-size: 1vw;
           font-weight: bold;
           margin: 0.6vw 1vw;
         }

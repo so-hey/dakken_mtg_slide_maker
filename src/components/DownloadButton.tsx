@@ -3,7 +3,7 @@ import Image from "next/image";
 export function DownloadButton({ text }: { text: string }) {
   return (
     <>
-      <style scoped>{`
+      <style>{`
       .download-img-container {
         filter: invert(17%) sepia(91%) saturate(8000%) hue-rotate(90deg)
           brightness(100%) contrast(106%);
