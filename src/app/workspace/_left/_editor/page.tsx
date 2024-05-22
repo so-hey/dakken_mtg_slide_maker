@@ -108,9 +108,8 @@ export default function Editor() {
         ),
       }),
     }).then((response) => {
-      if (response.ok) {
-        setIsWorking(false);
-      }
+      console.log(response);
+      setIsWorking(false);
     });
 
     await fetch("/api/convertPDF", {
@@ -119,6 +118,7 @@ export default function Editor() {
       console.log(response);
       setIsLoaded(true);
     });
+    console.log(setIsWorking);
   };
 
   useEffect(() => {

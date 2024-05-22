@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 
 export async function GET() {
-  const filePath = "./public/files/new.md";
+  const filePath = "/files/new.md";
 
   try {
     const fileBuffer = await fs.readFileSync(filePath);

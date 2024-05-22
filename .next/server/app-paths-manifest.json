@@ -1,9 +1,6 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/getMd/route": "app/api/getMd/route.js",
-  "/api/getPDF/route": "app/api/getPDF/route.js",
   "/page": "app/page.js",
+  "/workspace/page": "app/workspace/page.js",
   "/api/writeMdFile/route": "app/api/writeMdFile/route.js",
-  "/api/convertPDF/route": "app/api/convertPDF/route.js",
-  "/workspace/page": "app/workspace/page.js"
+  "/api/convertPDF/route": "app/api/convertPDF/route.js"
 }

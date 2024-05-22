@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
   const pdfText = data.pdfText;
 
   try {
-    fs.writeFileSync("./public/files/new.md", pdfText);
+    fs.writeFileSync("/files/new.md", pdfText);
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: "file write error" }, { status: 500 });
