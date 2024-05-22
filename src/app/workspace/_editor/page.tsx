@@ -111,7 +111,7 @@ export function Editor() {
 
   return (
     <div style={{ overflow: "hidden" }}>
-      <div className="container" style={{ height: "83vh", overflowY: "auto" }}>
+      <div className="container" style={{ height: "75vh", overflowY: "auto" }}>
         <h3 className="mt-4">定例会日時</h3>
         <DateInput handleDate={handleDate} />
         <hr />
@@ -162,7 +162,7 @@ export function Editor() {
         <br />
       </div>
       <hr />
-      <div style={{ height: "17vh", overflow: "hidden" }}>
+      <div style={{ height: "20vh", overflow: "hidden" }}>
         <center>
           <button
             type="button"

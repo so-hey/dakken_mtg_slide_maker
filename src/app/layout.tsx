@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "../styles/globals.css";
-
+import "@/styles/globals.css";
+import "@/styles/globalicons.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,7 +25,26 @@ export default function RootLayout({
           crossOrigin="anonymous"
         ></link>
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <header style={{ height: "5vh", overflow: "hidden" }}>
+          <nav
+            className="navbar bg-dark border-bottom border-bottom-dark"
+            data-bs-theme="dark"
+          >
+            <div className="container text-center">
+              <div className="row mt-0 justify-content-md-center mh-100">
+                <div
+                  className="col col-md-auto mh-100"
+                  style={{ color: "white" }}
+                >
+                  Dakken-MTG-Slide-Maker
+                </div>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <main style={{ height: "95vh", overflow: "hidden" }}> {children}</main>
+      </body>
     </html>
   );
 }
