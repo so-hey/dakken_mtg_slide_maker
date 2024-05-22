@@ -9,44 +9,44 @@ export function Display() {
     <div>
       <style>{`
         .displayText .title {
-          font-size: 3.8vw;
+          font-size: min(3.8vw, 53.2px) !important;
           font-weight: bold;
           text-align: center;
-          padding-top: 7vw;
+          padding-top: min(7vw, 98px);
         }
         .displayText h1 {
-          font-size: 2vw;
+          font-size: min(2vw, 28px) !important;
           font-weight: bold;
-          margin-bottom: 1.5vw;
+          margin-bottom: min(1.5vw, 21px);
         }
         .displayText h2 {
-          font-size: 1.8vw;
+          font-size: min(1.8vw, 25.2px) !important;
           font-weight: bold;
         }
         .displayText h3 {
-          font-size: 1.5vw;
+          font-size: min(1.5vw, 21px) !important;
           font-weight: bold;
-          margin: 0.8vw 1.5vw;
+          margin: min(0.8vw, 11.2px) min(1.5vw, 21px);
         }
         .displayText h4 {
-          font-size: 1.2vw;
+          font-size: min(1.2vw, 16.8px) !important;
           font-weight: bold;
-          margin: 0.7vw 1.2vw;
+          margin: min(0.7vw, 9.8px) min(1.2vw, 16.8px);
         }
         .displayText h5 {
-          font-size: 1vw;
+          font-size: min(1vw, 14px) !important;
           font-weight: bold;
-          margin: 0.6vw 1vw;
+          margin: min(0.6vw, 8.4px) min(1vw, 14px);
         }
         .displayText ul {
-          margin: 0.8vw;
+          margin: min(0.8vw, 11.2px);
         }
         .displayText li {
-          font-size: 1.2vw;
+          font-size: min(1.2vw, 16.8px) !important;
         }
         .displayText .box {
-          height: 24vw;
-          padding: 0 1vw;
+          height: min(24vw, 336px);
+          padding: 0 min(1vw, 14px);
         }
       `}</style>
       <div

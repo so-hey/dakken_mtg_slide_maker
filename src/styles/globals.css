@@ -17,3 +17,28 @@ body {
     "GRAD" 0,
     "opsz" 48;
 }
+
+h1 {
+  font-size: 3vw;
+}
+h2 {
+  font-size: min(2.4vw, 33.6px) !important;
+}
+h3 {
+  font-size: min(2vw, 28px) !important;
+}
+h4 {
+  font-size: min(1.8vw, 25.2px) !important;
+}
+h5 {
+  font-size: min(1.5vw, 21px) !important;
+}
+li {
+  font-size: min(1.2vw, 16.8px) !important;
+}
+p,
+input,
+span,
+button {
+  font-size: min(1.2vw, 16.8px) !important;
+}
