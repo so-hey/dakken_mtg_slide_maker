@@ -2,7 +2,7 @@
 
 import Left from "./_left/page";
 import Right from "./_right/page";
-import { PropsProvider } from "../../contexts/PropsContext";
+import { PropsProvider } from "@/contexts/PropsContext";
 
 export default function WorkSpace() {
   return (

@@ -1,4 +1,4 @@
-import { useProps } from "../contexts/PropsContext";
+import { useProps } from "@/contexts/PropsContext";
 import { ChangeEvent } from "react";
 
 export default function DateInput() {
