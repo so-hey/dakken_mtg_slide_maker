@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     fs.writeFileSync("./public/files/new.md", pdfText);
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ message: "file write error" }, { status: 500 });
+    return NextResponse.json({ error: "file write error" }, { status: 500 });
   }
 
   return NextResponse.json(

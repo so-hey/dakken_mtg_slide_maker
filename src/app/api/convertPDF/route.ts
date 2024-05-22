@@ -20,7 +20,7 @@ export async function GET() {
     );
   } catch (error) {
     return NextResponse.json(
-      { message: "failed to convert to pdf file" },
+      { error: "failed to convert to pdf file" },
       { status: 500 }
     );
   }

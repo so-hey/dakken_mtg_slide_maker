@@ -131,7 +131,21 @@ export default function Editor() {
       otherNotice.concat([[noticeTitle, noticeContent]])
     );
     setDisplayText(newText);
-  });
+  }, [
+    date,
+    dsContent,
+    deContent,
+    bizContent,
+    ccContent,
+    noticeTitle,
+    noticeContent,
+    otherNotice,
+    setDisplayText,
+  ]);
+
+  useEffect(() => {
+    setIsLoaded(false);
+  }, [setIsLoaded]);
 
   return (
     <div style={{ overflow: "hidden" }}>

@@ -1,12 +1,40 @@
 import { useProps } from "@/contexts/PropsContext";
 import { DownloadButton } from "@/components/DownloadButton";
 
+const dateToFlieName = (date: Date) => {
+  return `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, "0")}${date.getDate().toString().padStart(2, "0")}`;
+};
+
 export default function Download() {
   const { date, setIsWorking, isLoaded } = useProps();
 
-  const downloadPDF = async () => {};
+  const downloadPDF = async () => {
+    const response = await fetch("/api/getPDF", {
+      method: "GET",
+    });
+    if (response.ok) {
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${dateToFlieName(date)}.pdf`;
+      a.click();
+    }
+  };
 
-  const downloadMd = async () => {};
+  const downloadMd = async () => {
+    const response = await fetch("/api/getMd", {
+      method: "GET",
+    });
+    if (response.ok) {
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${dateToFlieName(date)}.md`;
+      a.click();
+    }
+  };
 
   return (
     <div className="container-fluid">
