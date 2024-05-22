@@ -42,3 +42,26 @@ span,
 button {
   font-size: min(1.2vw, 16.8px) !important;
 }
+button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  border-radius: 50%;
+  width: 2vw;
+  height: 2vw;
+  border: 0.3vw solid rgba(0, 0, 0, 0.2);
+  border-top-color: rgb(0, 0, 0);
+  animation: spin 1s infinite linear;
+}

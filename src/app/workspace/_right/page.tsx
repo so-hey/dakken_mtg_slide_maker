@@ -2,12 +2,13 @@
 
 import { useProps } from "@/contexts/PropsContext";
 
-export function Display() {
+export default function Right() {
   const { displayText } = useProps();
 
   return (
-    <div>
-      <style>{`
+    <div className="col-sm-6 mh-100" style={{ overflowY: "auto" }}>
+      <div>
+        <style>{`
         .displayText .title {
           font-size: min(3.8vw, 53.2px) !important;
           font-weight: bold;
@@ -49,12 +50,13 @@ export function Display() {
           padding: 0 min(1vw, 14px);
         }
       `}</style>
-      <div
-        className="displayText"
-        dangerouslySetInnerHTML={{ __html: displayText }}
-      ></div>
-      <br />
-      <br />
+        <div
+          className="displayText"
+          dangerouslySetInnerHTML={{ __html: displayText }}
+        ></div>
+        <br />
+        <br />
+      </div>
     </div>
   );
 }

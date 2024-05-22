@@ -4,18 +4,12 @@ import ContentInput from "@/components/ContentInput";
 import DateInput from "@/components/DateInput";
 import { NoticeDisplay, NoticeInput } from "@/components/OtherNotice";
 import { useProps } from "@/contexts/PropsContext";
-import { convertHtml } from "@/utils/convert";
-import { countCharacters } from "@/utils/countCharacters";
+import { convertHtml, convertMd } from "@/utils/convert";
+import countCharacters from "@/utils/countCharacters";
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 
-export function Editor() {
-  const { setDisplayText, setIsWorking } = useProps();
-
-  const [date, setDate] = useState(new Date());
-  const handleDate = (event: ChangeEvent<HTMLInputElement>) => {
-    const newDate = new Date(event.target.value);
-    setDate(newDate);
-  };
+export default function Editor() {
+  const { date, setDisplayText, setIsWorking, setIsLoaded } = useProps();
 
   const [dsContent, setDsContent] = useState("");
   const handleDsContent = (event: ChangeEvent<HTMLInputElement>) => {
@@ -97,6 +91,36 @@ export function Editor() {
     setOtherNotice(newNotice);
   };
 
+  const handleoConfirmButton = async () => {
+    await fetch("/api/writeMdFile", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        pdfText: convertMd(
+          date,
+          dsContent,
+          deContent,
+          bizContent,
+          ccContent,
+          otherNotice
+        ),
+      }),
+    }).then((response) => {
+      if (response.ok) {
+        setIsWorking(false);
+      }
+    });
+
+    await fetch("/api/convertPDF", {
+      method: "GET",
+    }).then((response) => {
+      console.log(response);
+      setIsLoaded(true);
+    });
+  };
+
   useEffect(() => {
     const newText = convertHtml(
       date,
@@ -113,7 +137,7 @@ export function Editor() {
     <div style={{ overflow: "hidden" }}>
       <div className="container" style={{ height: "75vh", overflowY: "auto" }}>
         <h3 className="mt-4">定例会日時</h3>
-        <DateInput handleDate={handleDate} />
+        <DateInput />
         <hr />
         <h3>部門報告</h3>
         <ContentInput
@@ -167,7 +191,7 @@ export function Editor() {
           <button
             type="button"
             className="btn btn-lg btn-outline-primary"
-            onClick={() => setIsWorking(false)}
+            onClick={handleoConfirmButton}
           >
             確定
           </button>

@@ -9,7 +9,7 @@ math: mathjax
 
 <div class="title">DA研定例会</div>
 
-# <center>2024年5月1日(水)</center>
+# <center>2024年5月23日(木)</center>
 
 ---
 
@@ -17,22 +17,23 @@ math: mathjax
 
 ### DS部門
 
-- 
+- なし
 
 ### DE部門
 
-- 
+- なし
 
 ### BIZ部門
 
-- 
+- なし
 
 ### CC部門
 
-- 
+- なし
 
 ---
 
 # その他連絡事項
 
-今日はなし
+### なし
+

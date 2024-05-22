@@ -1,0 +1,10 @@
+{
+  "build": {
+    "env": {
+      "RUSTUP_HOME": "/tmp/.rustup",
+      "CARGO_HOME": "/tmp/.cargo"
+    },
+    "installCommand": "curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable --profile minimal --no-modify-path && source /tmp/.cargo/env && npm install",
+    "buildCommand": "source /tmp/.cargo/env && npm run build"
+  }
+}

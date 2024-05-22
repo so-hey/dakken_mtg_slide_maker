@@ -4,7 +4,7 @@ export default function Header() {
       <nav className="container-fluid">
         <div className="container-xxl">
           <a className="navbar-brand" href="#">
-            Default
+            Dakken-MTG-Slide-Maker
           </a>
         </div>
       </nav>

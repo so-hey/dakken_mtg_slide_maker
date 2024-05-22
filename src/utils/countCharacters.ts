@@ -1,4 +1,4 @@
-export function countCharacters(text: string) {
+export default function countCharacters(text: string) {
   let count = 0;
 
   for (let char of text) {

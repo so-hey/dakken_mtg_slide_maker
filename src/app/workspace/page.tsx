@@ -1,8 +1,8 @@
 "use client";
-import { Editor } from "./_editor/page";
-import { Display } from "./_display/page";
-import { Download } from "./_download/page";
-import { PropsProvider, useProps } from "@/contexts/PropsContext";
+
+import Left from "./_left/page";
+import Right from "./_right/page";
+import { PropsProvider } from "@/contexts/PropsContext";
 
 export default function WorkSpace() {
   return (
@@ -13,7 +13,6 @@ export default function WorkSpace() {
 }
 
 const InternalCompornent = () => {
-  const { isWorking } = useProps();
   return (
     <div
       className="row mh-100"
@@ -23,15 +22,9 @@ const InternalCompornent = () => {
         overflow: "hidden",
       }}
     >
-      <div
-        className="col-sm-6 border-end mh-100"
-        style={{ overflow: "hidden" }}
-      >
-        {isWorking ? <Editor /> : <Download />}
-      </div>
-      <div className="col-sm-6 mh-100" style={{ overflowY: "auto" }}>
-        <Display />
-      </div>
+      <Left />
+
+      <Right />
     </div>
   );
 };

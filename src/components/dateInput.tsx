@@ -1,11 +1,12 @@
-import useWindowSize from "@/hooks/windowSize";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useProps } from "@/contexts/PropsContext";
+import { ChangeEvent } from "react";
 
-export default function DateInput({
-  handleDate,
-}: {
-  handleDate: (event: ChangeEvent<HTMLInputElement>) => void;
-}) {
+export default function DateInput() {
+  const { date, setDate } = useProps();
+  const handleDate = (event: ChangeEvent<HTMLInputElement>) => {
+    const newDate = new Date(event.target.value);
+    setDate(newDate);
+  };
   return (
     <div className="container">
       <div className="row mt-2">
