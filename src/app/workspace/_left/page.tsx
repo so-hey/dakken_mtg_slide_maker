@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { useProps } from "@/contexts/PropsContext";
+import { useProps } from "../../../contexts/PropsContext";
 import Download from "./_download/page";
 import Editor from "./_editor/page";
 
