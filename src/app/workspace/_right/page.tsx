@@ -1,6 +1,6 @@
 "use client";
 
-import { useProps } from "@/contexts/PropsContext";
+import { useProps } from "../../../contexts/PropsContext";
 
 export default function Right() {
   const { displayText } = useProps();

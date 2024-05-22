@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@/styles/globals.css";
-import "@/styles/globalicons.css";
-import Header from "@/components/Header";
+import "../styles/globals.css";
+import "../styles/globalicons.css";
+import Header from "../components/Header";
 import { ReactNode } from "react";
-import Main from "@/components/Main";
+import Main from "../components/Main";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

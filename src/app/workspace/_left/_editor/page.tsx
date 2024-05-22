@@ -1,11 +1,11 @@
 "use client";
 
-import ContentInput from "@/components/ContentInput";
-import DateInput from "@/components/DateInput";
-import { NoticeDisplay, NoticeInput } from "@/components/OtherNotice";
-import { useProps } from "@/contexts/PropsContext";
-import { convertHtml, convertMd } from "@/utils/convert";
-import countCharacters from "@/utils/countCharacters";
+import ContentInput from "../../../../components/ContentInput";
+import DateInput from "../../../../components/DateInput";
+import { NoticeDisplay, NoticeInput } from "../../../../components/OtherNotice";
+import { useProps } from "../../../../contexts/PropsContext";
+import { convertHtml, convertMd } from "../../../../utils/convert";
+import countCharacters from "../../../../utils/countCharacters";
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 
 export default function Editor() {
