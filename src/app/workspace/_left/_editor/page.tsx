@@ -1,7 +1,7 @@
 "use client";
 
 import ContentInput from "@/components/ContentInput";
-import DateInput from "@/components/DateInput";
+import DateInput from "@/components/dateInput";
 import { NoticeDisplay, NoticeInput } from "@/components/OtherNotice";
 import { useProps } from "@/contexts/PropsContext";
 import { convertHtml, convertMd } from "@/utils/convert";
