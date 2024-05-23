@@ -108,14 +108,14 @@ export default function Editor() {
         ),
       }),
     }).then((response) => {
-      console.log(response);
-      setIsWorking(false);
+      if (response.ok) {
+        setIsWorking(false);
+      }
     });
 
     await fetch("/api/convertPDF", {
       method: "GET",
-    }).then((response) => {
-      console.log(response);
+    }).then(() => {
       setIsLoaded(true);
     });
     console.log(setIsWorking);

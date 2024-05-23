@@ -1,18 +1,18 @@
 import { NextResponse } from "next/server";
 import { execa } from "execa";
+import path from "path";
 
 export async function GET() {
+  const cwdPath = process.cwd();
   try {
     await execa(
       "marp",
       [
-        "--theme",
-        "./public/files/css/dakken_style.css",
         "--html",
         "--pdf",
-        "./public/files/new.md",
+        path.join(cwdPath, "/tmp/new.md"),
         "-o",
-        "./public/files/new.pdf",
+        path.join(cwdPath, "/tmp/new.pdf"),
       ],
       {
         timeout: 500,

@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
+import path from "path";
 
 export async function GET() {
-  const filePath = "/files/new.md";
+  const filePath = path.join(process.cwd(), "tmp/new.md");
 
   try {
     const fileBuffer = await fs.readFileSync(filePath);
