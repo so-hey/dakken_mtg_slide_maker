@@ -10,9 +10,9 @@ export async function GET() {
       [
         "--html",
         "--pdf",
-        path.join(cwdPath, "/tmp/new.md"),
+        path.join(cwdPath, "tmp", "new.md"),
         "-o",
-        path.join(cwdPath, "/tmp/new.pdf"),
+        path.join(cwdPath, "tmp", "new.pdf"),
       ],
       {
         timeout: 500,

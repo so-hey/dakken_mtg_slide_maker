@@ -3,7 +3,7 @@ import path from "path";
 import fs from "fs";
 
 export async function GET() {
-  const filePath = path.join(process.cwd(), "tmp/new.pdf");
+  const filePath = path.join(process.cwd(), "tmp", "new.pdf");
 
   try {
     const fileBuffer = await fs.readFileSync(filePath);

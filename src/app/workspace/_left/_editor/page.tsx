@@ -107,12 +107,13 @@ export default function Editor() {
           otherNotice
         ),
       }),
-    }).then((response) => {
+    }).then(async (response) => {
+      const data = await response.json();
+      console.log(data);
       if (response.ok) {
         setIsWorking(false);
       }
     });
-
     await fetch("/api/convertPDF", {
       method: "GET",
     }).then(() => {
