@@ -92,7 +92,7 @@ export default function Editor() {
   };
 
   const handleoConfirmButton = async () => {
-    await fetch("/api/writeMdFile", {
+    await fetch("/api/confirmButton", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -114,12 +114,6 @@ export default function Editor() {
         setIsWorking(false);
       }
     });
-    await fetch("/api/convertPDF", {
-      method: "GET",
-    }).then(() => {
-      setIsLoaded(true);
-    });
-    console.log(setIsWorking);
   };
 
   useEffect(() => {
