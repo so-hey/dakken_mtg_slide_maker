@@ -8,6 +8,10 @@ import { convertHtml, convertMd } from "@/utils/convert";
 import countCharacters from "@/utils/countCharacters";
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 
+const dateToFlieName = (date: Date) => {
+  return `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, "0")}${date.getDate().toString().padStart(2, "0")}`;
+};
+
 export default function Editor() {
   const { date, setDisplayText, setIsWorking, setIsLoaded } = useProps();
 
@@ -92,13 +96,13 @@ export default function Editor() {
   };
 
   const handleoConfirmButton = async () => {
-    await fetch("/api/writeMdFile", {
+    const response = await fetch("/api/ilovepdf", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        pdfText: convertMd(
+        mdText: convertMd(
           date,
           dsContent,
           deContent,
@@ -107,19 +111,17 @@ export default function Editor() {
           otherNotice
         ),
       }),
-    }).then(async (response) => {
-      const data = await response.json();
-      console.log(data);
-      if (response.ok) {
-        setIsWorking(false);
-      }
     });
-    await fetch("/api/convertPDF", {
-      method: "GET",
-    }).then(() => {
-      setIsLoaded(true);
-    });
-    console.log(setIsWorking);
+    const data = await response.json();
+    console.log(data);
+    if (response.ok) {
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${dateToFlieName(date)}.html`;
+      a.click();
+    }
   };
 
   useEffect(() => {
