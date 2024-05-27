@@ -115,6 +115,7 @@ math: mathjax
 <style>
 section {
   position: relative;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 section::before {
   content: "";
@@ -185,30 +186,20 @@ ul {
   let replaceText = "";
   otherNotice.map((notice, index) => {
     if (index % 4 == 0 && index != 0) {
-      replaceText += `---
-      
-      `;
+      replaceText += `---\n\n`;
     }
     const [title, content] = notice;
     if (title != "" || content != "") {
       if (countCharacters(title) <= 120) {
-        replaceText += `### ${title}
-        
-        `;
+        replaceText += `### ${title}\n\n`;
       } else {
-        replaceText += `#### ${title}
-        
-        `;
+        replaceText += `#### ${title}\n\n`;
       }
-      replaceText += `- ${content}
-      
-      `;
+      replaceText += `- ${content}\n\n`;
     }
   });
   if (replaceText == "") {
-    replaceText = `### なし
-    
-    `;
+    replaceText = `### なし\n\n`;
   }
   mdText = mdText.replace("{otherNotice}", replaceText);
 

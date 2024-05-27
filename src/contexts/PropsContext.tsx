@@ -15,6 +15,12 @@ interface PropsContextType {
   setIsWorking: Dispatch<SetStateAction<boolean>>;
   isLoaded: boolean;
   setIsLoaded: Dispatch<SetStateAction<boolean>>;
+  downloadPdfUrl: string;
+  setDownloadPdfUrl: Dispatch<SetStateAction<string>>;
+  downloadPptxUrl: string;
+  setDownloadPptxUrl: Dispatch<SetStateAction<string>>;
+  downloadMdUrl: string;
+  setDownloadMdUrl: Dispatch<SetStateAction<string>>;
 }
 
 const PropsContext = createContext<PropsContextType>({
@@ -26,6 +32,12 @@ const PropsContext = createContext<PropsContextType>({
   setIsWorking: () => {},
   isLoaded: false,
   setIsLoaded: () => {},
+  downloadPdfUrl: "",
+  setDownloadPdfUrl: () => {},
+  downloadPptxUrl: "",
+  setDownloadPptxUrl: () => {},
+  downloadMdUrl: "",
+  setDownloadMdUrl: () => {},
 });
 
 export const PropsProvider = ({ children }: { children: React.ReactNode }) => {
@@ -33,6 +45,9 @@ export const PropsProvider = ({ children }: { children: React.ReactNode }) => {
   const [displayText, setDisplayText] = useState("");
   const [isWorking, setIsWorking] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [downloadPdfUrl, setDownloadPdfUrl] = useState("");
+  const [downloadPptxUrl, setDownloadPptxUrl] = useState("");
+  const [downloadMdUrl, setDownloadMdUrl] = useState("");
 
   return (
     <PropsContext.Provider
@@ -45,6 +60,12 @@ export const PropsProvider = ({ children }: { children: React.ReactNode }) => {
         setIsWorking,
         isLoaded,
         setIsLoaded,
+        downloadPdfUrl,
+        setDownloadPdfUrl,
+        downloadPptxUrl,
+        setDownloadPptxUrl,
+        downloadMdUrl,
+        setDownloadMdUrl,
       }}
     >
       {children}

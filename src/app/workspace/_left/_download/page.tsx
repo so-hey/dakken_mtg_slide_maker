@@ -6,34 +6,37 @@ const dateToFlieName = (date: Date) => {
 };
 
 export default function Download() {
-  const { date, setIsWorking, isLoaded } = useProps();
+  const {
+    date,
+    setIsWorking,
+    isLoaded,
+    downloadPdfUrl,
+    downloadPptxUrl,
+    downloadMdUrl,
+  } = useProps();
 
   const downloadPDF = async () => {
-    const response = await fetch("/api/getPDF", {
-      method: "GET",
-    });
-    if (response.ok) {
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${dateToFlieName(date)}.pdf`;
-      a.click();
-    }
+    const link = document.createElement("a");
+    link.href = downloadPdfUrl;
+    link.setAttribute("download", `${dateToFlieName(date)}.pdf`);
+    link.click();
+    link.remove();
+  };
+
+  const downloadPptx = async () => {
+    const link = document.createElement("a");
+    link.href = downloadPptxUrl;
+    link.setAttribute("download", `${dateToFlieName(date)}.pptx`);
+    link.click();
+    link.remove();
   };
 
   const downloadMd = async () => {
-    const response = await fetch("/api/getMd", {
-      method: "GET",
-    });
-    if (response.ok) {
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${dateToFlieName(date)}.md`;
-      a.click();
-    }
+    const link = document.createElement("a");
+    link.href = downloadMdUrl;
+    link.setAttribute("download", `${dateToFlieName(date)}.md`);
+    link.click();
+    link.remove();
   };
 
   return (
@@ -53,8 +56,12 @@ export default function Download() {
           {isLoaded ? (
             <div className="d-grid gap-2 col-8 mx-auto">
               <DownloadButton
-                text="PDFをダウンロード"
+                text="pdfファイルをダウンロード"
                 handleClick={downloadPDF}
+              />
+              <DownloadButton
+                text="pptxファイルをダウンロード"
+                handleClick={downloadPptx}
               />
               <DownloadButton
                 text="mdファイルをダウンロード"

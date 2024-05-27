@@ -1,4 +1,4 @@
-// File: C:\Users\sohtn\Desktop\ilovepdf\src\app\workspace\page.tsx
+// File: C:\Users\sohtn\Desktop\dakken_mtg_slide_maker\src\app\workspace\page.tsx
 import * as entry from '../../../../src/app/workspace/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

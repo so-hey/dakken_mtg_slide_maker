@@ -8,12 +8,16 @@ import { convertHtml, convertMd } from "@/utils/convert";
 import countCharacters from "@/utils/countCharacters";
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 
-const dateToFlieName = (date: Date) => {
-  return `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, "0")}${date.getDate().toString().padStart(2, "0")}`;
-};
-
 export default function Editor() {
-  const { date, setDisplayText, setIsWorking, setIsLoaded } = useProps();
+  const {
+    date,
+    setDisplayText,
+    setIsWorking,
+    setIsLoaded,
+    setDownloadPdfUrl,
+    setDownloadPptxUrl,
+    setDownloadMdUrl,
+  } = useProps();
 
   const [dsContent, setDsContent] = useState("");
   const handleDsContent = (event: ChangeEvent<HTMLInputElement>) => {
@@ -96,32 +100,108 @@ export default function Editor() {
   };
 
   const handleoConfirmButton = async () => {
-    const response = await fetch("/api/ilovepdf", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        mdText: convertMd(
-          date,
-          dsContent,
-          deContent,
-          bizContent,
-          ccContent,
-          otherNotice
-        ),
-      }),
-    });
-    const data = await response.json();
-    console.log(data);
-    if (response.ok) {
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${dateToFlieName(date)}.html`;
-      a.click();
+    const mdText = convertMd(
+      date,
+      dsContent,
+      deContent,
+      bizContent,
+      ccContent,
+      otherNotice
+    );
+
+    const fetchPdf = async () => {
+      const response = await fetch(
+        "https://marp-api-7dcd03599145.herokuapp.com/api/convertpdf",
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "text/plain; charset=utf-8",
+          },
+          body: mdText,
+        }
+      );
+      console.log(response);
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(new Blob([blob]));
+
+        setDownloadPdfUrl(url);
+
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    const fetchPptx = async () => {
+      const response = await fetch(
+        "https://marp-api-7dcd03599145.herokuapp.com/api/convertpptx",
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "text/plain; charset=utf-8",
+          },
+          body: mdText,
+        }
+      );
+      console.log(response);
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(new Blob([blob]));
+
+        setDownloadPptxUrl(url);
+
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    const fetchMd = async () => {
+      const response = await fetch(
+        "https://marp-api-7dcd03599145.herokuapp.com/api/convertmd",
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "text/plain; charset=utf-8",
+          },
+          body: mdText,
+        }
+      );
+      console.log(response);
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(new Blob([blob]));
+
+        setDownloadMdUrl(url);
+
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    setIsWorking(false);
+
+    let result1 = false;
+    let result2 = false;
+    let result3 = false;
+    while (!(result1 && result2 && result3)) {
+      if (!result1 || result2) {
+        [result1, result2] = await Promise.all([fetchPdf(), fetchPptx()]);
+      } else if (!result1) {
+        result1 = await fetchPdf();
+      } else {
+        result2 = await fetchPptx();
+      }
+      if (!result3) {
+        result3 = await fetchMd();
+      }
     }
+    setIsLoaded(true);
   };
 
   useEffect(() => {

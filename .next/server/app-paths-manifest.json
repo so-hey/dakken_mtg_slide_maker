@@ -1,5 +1,3 @@
 {
-  "/page": "app/page.js",
-  "/workspace/page": "app/workspace/page.js",
-  "/api/ilovepdf/route": "app/api/ilovepdf/route.js"
+  "/workspace/page": "app/workspace/page.js"
 }
