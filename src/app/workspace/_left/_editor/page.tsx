@@ -96,7 +96,7 @@ export default function Editor() {
   };
 
   const handleoConfirmButton = async () => {
-    const response = await fetch("/api/ilovepdf", {
+    const response = await fetch("/api/execa", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -114,14 +114,14 @@ export default function Editor() {
     });
     const data = await response.json();
     console.log(data);
-    if (response.ok) {
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${dateToFlieName(date)}.html`;
-      a.click();
-    }
+    // if (response.ok) {
+    //   const blob = await response.blob();
+    //   const url = window.URL.createObjectURL(blob);
+    //   const a = document.createElement("a");
+    //   a.href = url;
+    //   a.download = `${dateToFlieName(date)}.html`;
+    //   a.click();
+    // }
   };
 
   useEffect(() => {

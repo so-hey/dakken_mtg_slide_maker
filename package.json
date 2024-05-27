@@ -8,7 +8,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "install": "npm install",
+    "lint": "next lint",
+    "pdf": "npx @marp-team/marp-cli --html --pdf /tmp/new.md -o /tmp/new.pdf",
+    "pptx": "npx @marp-team/marp-cli --html --pptx /tmp/new.md -o /tmp/new.pptx"
   },
   "dependencies": {
     "@ilovepdf/ilovepdf-nodejs": "^0.1.0",
@@ -16,6 +19,7 @@
     "@marp-team/marp-core": "^3.9.0",
     "@marp-team/marpit": "^3.0.0",
     "dotenv": "^16.4.5",
+    "execa": "^9.1.0",
     "next": "14.2.3",
     "puppeteer-html-pdf": "^4.0.8",
     "react": "^18",
