@@ -8,7 +8,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "install": "npm install",
     "lint": "next lint",
     "pdf": "npx @marp-team/marp-cli --html --pdf /tmp/new.md -o /tmp/new.pdf",
     "pptx": "npx @marp-team/marp-cli --html --pptx /tmp/new.md -o /tmp/new.pptx"
