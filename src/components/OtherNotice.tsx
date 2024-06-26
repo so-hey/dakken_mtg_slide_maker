@@ -63,7 +63,7 @@ export function NoticeDisplay({
         <input
           type="text"
           className="form-control"
-          id="Title"
+          id={`Title${index}`}
           value={notice[0]}
           placeholder="Title"
           disabled
@@ -73,7 +73,7 @@ export function NoticeDisplay({
         <input
           type="text"
           className="form-control"
-          id="Content"
+          id={`Content${index}`}
           value={notice[1]}
           placeholder="Content"
           disabled

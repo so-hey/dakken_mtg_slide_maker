@@ -18,29 +18,41 @@ body {
     "opsz" 48;
 }
 
+.my-container {
+  width: 100%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 1200px) {
+  .my-container {
+    max-width: 1200px;
+  }
+}
+
 h1 {
-  font-size: 3vw;
+  font-size: min(3vw, 36px);
 }
 h2 {
-  font-size: min(2.4vw, 33.6px) !important;
+  font-size: min(2.4vw, 28.8px) !important;
 }
 h3 {
-  font-size: min(2vw, 28px) !important;
+  font-size: min(2vw, 24px) !important;
 }
 h4 {
-  font-size: min(1.8vw, 25.2px) !important;
+  font-size: min(1.8vw, 21.6px) !important;
 }
 h5 {
-  font-size: min(1.5vw, 21px) !important;
-}
-li {
-  font-size: min(1.2vw, 16.8px) !important;
+  font-size: min(1.5vw, 18px) !important;
 }
 p,
 input,
 span,
-button {
-  font-size: min(1.2vw, 16.8px) !important;
+button,
+label {
+  font-size: min(1.2vw, 14.4px) !important;
 }
 button {
   display: flex !important;
@@ -64,4 +76,50 @@ button {
   border: 0.3vw solid rgba(0, 0, 0, 0.2);
   border-top-color: rgb(0, 0, 0);
   animation: spin 1s infinite linear;
+}
+
+.displayText .title {
+  font-size: min(3.8vw, 45.6px) !important;
+  font-weight: bold;
+  text-align: center;
+  padding-top: min(7vw, 84px);
+}
+.displayText h1 {
+  font-size: min(2vw, 24px) !important;
+  font-weight: bold;
+  margin-bottom: min(1.5vw, 18px);
+}
+.displayText h2 {
+  font-size: min(1.8vw, 21.6px) !important;
+  font-weight: bold;
+}
+.displayText h3 {
+  font-size: min(1.5vw, 18px) !important;
+  font-weight: bold;
+  margin: min(0.8vw, 9.6px) min(1.5vw, 18px);
+}
+.displayText h4 {
+  font-size: min(1.2vw, 14.4px) !important;
+  font-weight: bold;
+  margin: min(0.7vw, 8.4px) min(1.2vw, 14.4px);
+}
+.displayText h5 {
+  font-size: min(1vw, 12px) !important;
+  font-weight: bold;
+  margin: min(0.6vw, 7.2px) min(1vw, 12px);
+}
+.displayText ul {
+  margin: min(0.8vw, 9.6px);
+}
+.displayText li {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
+  font-size: min(1.2vw, 14.4px) !important;
+}
+.displayText .box {
+  height: min(24vw, 288px);
+  width: min(45vw, 540px);
+  padding: 0 min(1vw, 12px);
 }

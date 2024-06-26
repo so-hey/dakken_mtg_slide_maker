@@ -2,7 +2,7 @@ import { useProps } from "@/contexts/PropsContext";
 import { ChangeEvent } from "react";
 
 export default function DateInput() {
-  const { date, setDate } = useProps();
+  const { setDate } = useProps();
   const handleDate = (event: ChangeEvent<HTMLInputElement>) => {
     const newDate = new Date(event.target.value);
     setDate(newDate);

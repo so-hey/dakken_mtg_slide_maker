@@ -23,7 +23,6 @@ const InternalCompornent = () => {
       }}
     >
       <Left />
-
       <Right />
     </div>
   );

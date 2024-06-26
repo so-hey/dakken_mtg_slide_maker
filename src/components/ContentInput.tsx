@@ -2,31 +2,39 @@ import { ChangeEventHandler } from "react";
 
 export default function ContentInput({
   group,
-  content,
+  contents,
   handleContent,
 }: {
   group: string;
-  content: string;
+  contents: string[];
   handleContent: ChangeEventHandler<HTMLInputElement>;
 }) {
   return (
-    <div className="input-group mb-3">
-      <span
-        className="input-group-text"
-        id="inputGroup-sizing-default"
-        style={{ width: "4vw" }}
-      >
-        {group}
-      </span>
-      <input
-        type="text"
-        className="form-control"
-        value={content}
-        placeholder="なし"
-        onChange={handleContent}
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default"
-      />
-    </div>
+    <>
+      <div className="input-group mb-1">
+        <span className="input-group-text" style={{ width: "4vw" }}>
+          {group}
+        </span>
+        <input
+          type="text"
+          className="form-control"
+          id={`${group}0`}
+          value={contents[0]}
+          placeholder="なし"
+          onChange={handleContent}
+        />
+      </div>
+      <div className="input-group mb-3">
+        <span className="input-group-text" style={{ width: "4vw" }}></span>
+        <input
+          type="text"
+          className="form-control"
+          id={`${group}1`}
+          value={contents[1]}
+          placeholder="なし"
+          onChange={handleContent}
+        />
+      </div>
+    </>
   );
 }

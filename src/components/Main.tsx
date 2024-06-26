@@ -6,7 +6,7 @@ export default function Main({ content }: { content: ReactNode }) {
       className="d-flex vh-100 justify-content-center"
       style={{ backgroundColor: "#EEE" }}
     >
-      <div className="row container-xxl" style={{ backgroundColor: "white" }}>
+      <div className="row my-container" style={{ backgroundColor: "white" }}>
         {content}
       </div>
     </main>
